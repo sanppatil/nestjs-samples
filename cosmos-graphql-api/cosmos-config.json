@@ -12,6 +12,13 @@
       "key": "account4-key",
       "databaseId": "database4",
       "containerId": "container4"
+    },
+    {
+      "name": "config5",
+      "accountName": "https://account4.documents.azure.com:443/",
+      "key": "account4-key",
+      "databaseId": "database4",
+      "containerId": "container4"
     }
   ]
   

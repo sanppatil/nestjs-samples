@@ -16,6 +16,15 @@ export class CosmosResolver {
     return this.cosmosService.getDocumentById(configName, partitionKey, id);
   }
 
+  @Query(() => GraphQLJSON, { nullable: true })
+  async queryDocuments(
+    @Args('configName') configName: string,
+    @Args('partitionKey') partitionKey: string,
+    @Args('id') id: string,
+  ) {
+    return this.cosmosService.queryDocuments(configName, partitionKey, id);
+  }
+
   @Query(() => [String])
   getAllConfigNames() {
     return CosmosConfig.getAllConfigs().map(([name]) => name);

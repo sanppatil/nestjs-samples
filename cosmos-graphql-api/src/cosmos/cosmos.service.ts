@@ -43,4 +43,35 @@ export class CosmosService {
       );
     }
   }
+
+  async queryDocuments(
+    configName: string,
+    partitionKey: string,
+    id: string,
+  ): Promise<any> {
+    try {
+      const container = this.getContainer(configName);
+      const query =
+        'SELECT * FROM c WHERE c.partition_key = @partitionKey AND c.id = @id';
+      const queryParameters = [
+        {
+          name: '@id',
+          value: id,
+        },
+        {
+          name: '@partitionKey',
+          value: partitionKey,
+        },
+      ];
+      const { resources: results } = await container.items
+        .query({
+          query: query,
+          parameters: queryParameters,
+        })
+        .fetchAll();
+      return results;
+    } catch (error) {
+      console.error('Error querying Cosmos DB:', error.message);
+    }
+  }
 }
