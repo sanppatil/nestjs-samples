@@ -1,0 +1,17 @@
+[
+    {
+      "name": "config3",
+      "accountName": "https://account3.documents.azure.com:443/",
+      "key": "account3-key",
+      "databaseId": "database3",
+      "containerId": "container3"
+    },
+    {
+      "name": "config4",
+      "accountName": "https://account4.documents.azure.com:443/",
+      "key": "account4-key",
+      "databaseId": "database4",
+      "containerId": "container4"
+    }
+  ]
+  
