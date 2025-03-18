@@ -24,7 +24,7 @@ export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
 
   @Post()
-  //@Roles('Create.Customer')
+  @Roles('Update.Customer')
   create(@Body() customerData: Omit<Customer, 'id'>): Customer {
     return this.customersService.create(customerData);
   }
