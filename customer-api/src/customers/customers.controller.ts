@@ -9,7 +9,7 @@ import {
   Delete,
   UseGuards,
 } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiBody } from '@nestjs/swagger';
 import { CustomersService } from './customers.service';
 import { Customer } from './entities/customer.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -17,7 +17,7 @@ import { RolesGuard } from '../auth/roles.guard';
 import { Roles } from '../auth/roles.decorator';
 
 @ApiTags('customers')
-@ApiBearerAuth() // Enables Authorization header in Swagger
+@ApiBearerAuth()
 @Controller('customers')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class CustomersController {
@@ -25,6 +25,7 @@ export class CustomersController {
 
   @Post()
   @Roles('Update.Customer')
+  @ApiBody({ type: Customer })
   create(@Body() customerData: Omit<Customer, 'id'>): Customer {
     return this.customersService.create(customerData);
   }
